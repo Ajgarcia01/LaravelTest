@@ -1,0 +1,74 @@
+.active-bg{
+   background-color:  #ec8b24 !important;
+   color: white;
+}
+
+.sidemenu-bg{
+    background-color: #002883 !important;
+    color: white !important;
+}
+
+
+.text-sidebar p,i,span{
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+::-webkit-scrollbar-track {
+    background: #b6b6b6;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ec8b24;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6d3800;
+  }
+
+
+.calendar table.month th.month-title {
+  font-size: 16px;
+  padding-bottom: 5px;
+  text-align: center;
+  font-weight: 700;
+  color: white;
+  background-color: #002883;
+
+}
+
+.calendar .year-title{
+    color: white;
+}
+
+.day-header {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.calendar-header {
+    background-color: #002883;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+
+.day-content {
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+.month-container {
+  margin-bottom: 48px;
+}
+
+table > tr {
+  color: #96979b;
+}
+
