@@ -28,7 +28,7 @@ class DaysController extends Controller
                   ->orWhere('recurrent', 'like', "%$searchTerm%");
         }
 
-        $recordsPerPage = request()->input('records_per_page', 10); // Valor por defecto: 10
+        $recordsPerPage = request()->input('records_per_page', 10);
         $days = $query->paginate($recordsPerPage);
 
         return view('days.index', compact('days'));

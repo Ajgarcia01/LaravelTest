@@ -8,7 +8,11 @@ use App\Models\Days;
 
 class HomeController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
    // Obtener todos los días
@@ -16,6 +20,9 @@ class HomeController extends Controller
 
     return view('home', compact('days'));
     }
+
+
+
     /**
      * Create a new controller instance.
      *

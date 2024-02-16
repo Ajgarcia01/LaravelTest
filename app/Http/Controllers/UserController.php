@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $query = User::query();
 
-        // Aplicar filtro de búsqueda si se proporciona un término de búsqueda
         if (request()->has('search') && request()->filled('search')) {
             $searchTerm = request()->input('search');
             $query->where('name', 'like', "%$searchTerm%")
@@ -19,7 +24,7 @@ class UserController extends Controller
                   ->orWhere('email', 'like', "%$searchTerm%");
         }
 
-        $recordsPerPage = request()->input('records_per_page', 10); // Valor por defecto: 10
+        $recordsPerPage = request()->input('records_per_page', 10);
         $users = $query->paginate($recordsPerPage);
 
         return view('user.index', compact('users'));
@@ -42,11 +47,17 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $input = $request->all();
-        User::create($input);
-        return redirect('users')->with('flash_message', 'Student Addedd!');
-    }
+{
+    $user = new User();
+    $user->name = $request->input('name');
+    $user->surname = $request->input('surname');
+    $user->email = $request->input('email');
+    $user->password = Hash::make($request->input('password'));
+    $user->save();
+
+    return redirect('users')->with('flash_message', 'User Added!');
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -72,7 +83,7 @@ class UserController extends Controller
         $user = User::find($id);
         $input = $request->all();
         $user->update($input);
-        return redirect('users')->with('flash_message', 'user Updated!');
+        return redirect('users')->with('flash_message', 'User Updated!');
     }
 
     /**
@@ -84,6 +95,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect('users')->with('flash_message', 'Student deleted!');
+        return redirect('users')->with('flash_message', 'User deleted!');
     }
 }
